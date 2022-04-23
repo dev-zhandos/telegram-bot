@@ -70,12 +70,11 @@ switch ($message) {
 
 
 $send_data['chat_id'] = $data['chat'] ['id'];
-
-if(date("i:s") == "44:00" ){
-  $res = sendTelegram('sendMessage', date("h:i:s"));
+$send_data['text'] = date("h:i:s");
+getNumberfact();
+if(date("i:s").Equals("00:00")){
+  $res = sendTelegram('sendMessage', $send_data );
 }
-
-$res = sendTelegram($method, $send_data);
 
 
 
@@ -93,6 +92,22 @@ function sendTelegram($method, $data, $headers = [])
 	]);
 	$result = curl_exec($curl);
 	curl_close($curl);
+	return (json_decode($result, 1) ? json_decode($result, 1) : $result);
+}
+function getNumberfact()
+{
+	$curl = curl_init();
+	curl_setopt_array($curl, [
+		CURLOPT_POST => 1,
+		CURLOPT_HEADER => 0,
+		CURLOPT_RETURNTRANSFER => 1,
+		CURLOPT_URL => 'http://numbersapi.com/23' . 42 . '?json',
+		CURLOPT_HTTPHEADER => array_merge(array("Content-Type: application/json"))
+	]);
+	$result = curl_exec($curl);
+	curl_close($curl);
+  $send_data['text'] = $result['text'];
+  sendTelegram('sendMessage', $send_data );
 	return (json_decode($result, 1) ? json_decode($result, 1) : $result);
 }
 
