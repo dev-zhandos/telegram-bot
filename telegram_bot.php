@@ -6,7 +6,7 @@ file_put_contents('file.txt', '$data: '.print_r($data, 1)."\n", FILE_APPEND);
 
 $data = $data['callback_query'] ? $data['callback_query'] : $data['message'];
 
-define('TOKEN', '5342614957:AAHlJFFrajWRHLy0O07MC4fZJ53fxYWQ1iE');
+define('TOKEN', 'secrets.TELEGRAM_BOT_TOKEN');
 
 $message = mb_strtolower(($data['text'] ? $data['text'] : $data['data']),'utf-8');
 
