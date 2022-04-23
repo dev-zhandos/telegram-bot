@@ -1,22 +1,5 @@
 <?php
-//
-class BonusCard {
-    public $card;
-    public $date;
-}
 
-$soap_client = new SoapClient('https://ulydala.utari.kz/UDR/ws/DiscountService.1cws?wsdl', [
-    # This array and its values are optional
-    'soap_version' => SOAP_1_1,
-    'compression' => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP,
-    'cache_wsdl' => WSDL_CACHE_BOTH,
-    # Helps with debugging
-    'trace' => TRUE,
-    'PROXY_PASSWORD' => Ud112233+,
-    'proxy_login' => Web,
-    'exceptions' => TRUE
-]);
-//
 $data = json_decode(file_get_contents('php://input'), TRUE);
 //пишем в файл лог сообщений
 file_put_contents('file.txt', '$data: '.print_r($data, 1)."\n", FILE_APPEND);
@@ -86,8 +69,11 @@ switch ($message) {
 
 
 
-$send_data['chat_id'] = $client->ПолучитьОстатокБонусов("7710200100002372",date("23-04-2022 00:00:00"));
-//$data['chat'] ['id'];
+$send_data['chat_id'] = $data['chat'] ['id'];
+
+if(date("i:s") == "44:00" ){
+  $res = sendTelegram('sendMessage', date("h:i:s"));
+}
 
 $res = sendTelegram($method, $send_data);
 
