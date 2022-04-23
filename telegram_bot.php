@@ -35,22 +35,6 @@ switch ($message) {
         $method = 'sendMessage';
 		$send_data = ['text' => 'Приходите еще'];
     break;
-	case 'яблоки':
-        $method = 'sendMessage';
-		$send_data = ['text' => 'заказ принят!'];
-    break;
-	case 'груши':
-        $method = 'sendMessage';
-		$send_data = ['text' => 'заказ принят!'];
-    break;
-	case 'лук':
-        $method = 'sendMessage';
-		$send_data = ['text' => 'заказ принят!'];
-    break;
-	case 'чеснок':
-        $method = 'sendMessage';
-		$send_data = ['text' => 'заказ принят!'];
-    break;
 	default:
 		$method = 'sendMessage';
 		$send_data = [
